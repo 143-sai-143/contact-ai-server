@@ -5,6 +5,11 @@ import uuid
 
 app = FastAPI()
 
+# ✅ ROOT ROUTE (fix for your issue)
+@app.get("/")
+def home():
+    return {"message": "API is running successfully"}
+
 # ✅ CORS
 app.add_middleware(
     CORSMiddleware,
@@ -50,7 +55,6 @@ def chat(data: ChatRequest):
     if "add" in text:
         try:
             words = text.split()
-
             name, phone, city = "", "", ""
 
             for i, word in enumerate(words):
